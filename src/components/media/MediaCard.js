@@ -16,10 +16,10 @@ export const MediaCard = (props) => {
                 <p className="card-text">{`Sinopsis: ${media.sinopsis}`}</p>
                 <p className="card-text"> Url_pelicula: <a href={media.url_pelicula} target="_blank">Link</a></p>
                 <p className="card-text">{`Año: ${media.anio_estreno}`}</p>
-                <p className="card-text">{`Genero: ${media.genero}`}</p>
-                <p className="card-text">{`Director: ${media.director}`}</p>
-                <p className="card-text">{`Productora: ${media.productora}`}</p>
-                <p className="card-text">{`Tipo: ${media.tipo}`}</p>
+                <p className="card-text">{`Genero: ${media.genero?.name }`}</p>
+                <p className="card-text">{`Director: ${media.director?.name }`}</p>
+                <p className="card-text">{`Productora: ${media.productora?.name_Producer }`}</p>
+                <p className="card-text">{`Tipo: ${media.tipo?.name }`}</p>
             </div>
         </div>
     </div>
