@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export const MediaCard = (props) => {
 
@@ -20,6 +21,9 @@ export const MediaCard = (props) => {
                 <p className="card-text">{`Director: ${media.director?.name }`}</p>
                 <p className="card-text">{`Productora: ${media.productora?.name_Producer }`}</p>
                 <p className="card-text">{`Tipo: ${media.tipo?.name }`}</p>
+                <p className="card-text">
+                  <Link to = {`/medias/edit/${media._id}`}>Ver mas</Link>
+                </p>
             </div>
         </div>
     </div>

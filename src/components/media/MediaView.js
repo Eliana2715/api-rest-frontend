@@ -31,7 +31,7 @@ const handleOpenModal = () => {
 }
 
   return (
-    <div className='container-fluid'>
+    <div className='container'>
       <div className="at-2 ab-2 row row-cols-1 row-cols-md-4 g-4">
         {
           medias.map((media) => {

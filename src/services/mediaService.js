@@ -2,7 +2,7 @@ import { axiosInstance } from "../helper/axios-config";
 
 const getMedias = () => {
     return axiosInstance.get('media', {
-        headers: {
+        header: {
             'Content-type': 'application/json'
         }
     });
@@ -10,7 +10,7 @@ const getMedias = () => {
 
 const createMedias = (data) => {
     return axiosInstance.post('media', data, {
-        headers: {
+        header: {
             'Content-type': 'application/json'
         }
     });
@@ -18,13 +18,20 @@ const createMedias = (data) => {
 
 const updateMedias = (mediaId, data) => {
     return axiosInstance.put(`media/${mediaId}`, data, {
-        headers: {
+        header: {
             'Content-type': 'application/json'
         }
     });
 };
 
+const getMediasForId = (mediaId) => {
+    return axiosInstance.get(`media/${mediaId}`, {
+        header: {
+            'content-type': 'application/json'
+        }
+    });
+}
 
 export {
-    getMedias, createMedias, updateMedias
+    getMedias, createMedias, updateMedias, getMediasForId
 };
