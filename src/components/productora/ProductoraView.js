@@ -60,7 +60,7 @@ export const ProductoraView = () => {
 
   const handleUpdateProductoras = async (e, productora) => {
     e.preventDefault();
-    setValuesForm({ name: productora.name, state: productora.state, slogan: productora.slogan, description: productora.description});
+    setValuesForm({ name: productora.name_Producer, state: productora.state, slogan: productora.slogan, description: productora.description});
     setProductoraSelect(productora._id);
   }
 
@@ -69,7 +69,7 @@ export const ProductoraView = () => {
       <form onSubmit={(e) => handleCreateProductora(e)} >
         <div className="row">
           <div className="col-lg-3">
-            <div className="mb-3">
+          <div className="mb-3">
               <label className="form-label">Nombre</label>
               <input required name='name' value={name} type="text" className="form-control"
                 onChange={(e) => handleOnChange(e)} />
