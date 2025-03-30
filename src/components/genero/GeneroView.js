@@ -8,7 +8,7 @@ export const GeneroView = () => {
   
   const [ valuesForm, setValuesForm ] = useState({});
   const [ generos, setGeneros ] = useState([]);
-  const { name = '', state = '' } = valuesForm;
+  const { name = '', state = '', description = '' } = valuesForm;
   const [ generoSelect, setGeneroSelect ] = useState(null);
 
 
@@ -45,12 +45,12 @@ export const GeneroView = () => {
       });
       Swal.showLoading();
       if (generoSelect) {
-        await updateGeneros(valuesForm, generoSelect);
+        await updateGeneros(generoSelect, valuesForm);
         setGeneroSelect(null);
       } else {
         await createGeneros(valuesForm);
       }
-      setValuesForm({ name: '', state: '' });
+      setValuesForm({ name: '', state: '', description: '' });
       listGeneros();
       Swal.close();
     } catch (error) {
@@ -61,7 +61,7 @@ export const GeneroView = () => {
 
   const handleUpdateGenero = async (e, genero) => {
     e.preventDefault();
-    setValuesForm({ name: genero.name, state: genero.state});
+    setValuesForm({ name: genero.name, state: genero.state, description: genero.description});
     setGeneroSelect(genero._id);
   }
 
@@ -69,7 +69,7 @@ export const GeneroView = () => {
     <div className='container-fluid mt-4'>
       <form onSubmit={(e) => handleCreateGenero(e)} >
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-4">
             <div className="mb-3">
               <label className="form-label">Nombre</label>
               <input required name='name' value={name} type="text" className="form-control"
@@ -78,9 +78,16 @@ export const GeneroView = () => {
           </div>
           <div className="col-lg-4">
             <div className="mb-3">
+              <label className="form-label">Descripcion</label>
+              <input required name='name' value={description} type="text" className="form-control"
+                onChange={(e) => handleOnChange(e)} />
+            </div>
+            </div>
+          <div className="col-lg-4">
+            <div className="mb-3">
               <label className="form-label">Estado</label>
               <select required name='state' value={state} className="form-select" onChange={(e) => handleOnChange(e)} >
-                <option selected>--SELECCIONE--</option>
+              <option value="">--SELECCIONE--</option>
                 <option value="Activo">Activo</option>
                 <option value="Inactivo">Inactivo</option>
               </select>
@@ -105,7 +112,8 @@ export const GeneroView = () => {
         <tbody>
           {
             generos.length > 0 && generos.map((genero, index) => {
-              return <tr>
+              return (
+                <tr key={genero._id}>
                 <th scope='row'> {index + 1} </th>
                 <td> {genero.name} </td>
                 <td> {genero.state} </td>
@@ -116,6 +124,7 @@ export const GeneroView = () => {
                   <button className='btn btn-danger btn-sm'>Eliminar</button>
                 </td>
               </tr>
+              );
             })
           }
         </tbody>

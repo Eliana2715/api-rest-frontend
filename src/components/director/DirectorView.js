@@ -45,7 +45,7 @@ export const DirectorView = () => {
       });
       Swal.showLoading();
       if (directorSelect) {
-        await updateDirectors(valuesForm, directorSelect);
+        await updateDirectors(directorSelect, valuesForm);
         setDirectorSelect(null);
       } else {
         await createDirectors(valuesForm);
@@ -104,7 +104,8 @@ export const DirectorView = () => {
         <tbody>
           {
             directors.length > 0 && directors.map((director, index) => {
-              return <tr>
+              return (
+                <tr key={director._id}>
                 <th scope='row'> {index + 1} </th>
                 <td> {director.name} </td>
                 <td> {director.state} </td>
@@ -114,6 +115,7 @@ export const DirectorView = () => {
                   <button className='btn btn-danger btn-sm'>Eliminar</button>
                 </td>
               </tr>
+              );
             })
           }
         </tbody>

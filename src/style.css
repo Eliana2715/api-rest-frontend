@@ -8,6 +8,13 @@ body {
     height: 100%;
 }
 
+.card-text {
+    max-height: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
 .card:hover {
     box-shadow: 0 4px 8px 0 black;
 }

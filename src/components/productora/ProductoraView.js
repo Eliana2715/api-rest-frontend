@@ -7,7 +7,7 @@ export const ProductoraView = () => {
   
   const [ valuesForm, setValuesForm ] = useState({});
   const [ productoras, setProductoras ] = useState([]);
-  const { name = '', state = '' } = valuesForm;
+  const { name = '', state = '', slogan = '', description = '' } = valuesForm;
   const [ productoraSelect, setProductoraSelect ] = useState(null);
 
 
@@ -44,12 +44,12 @@ export const ProductoraView = () => {
       });
       Swal.showLoading();
       if (productoraSelect) {
-        await updateProductoras(valuesForm, productoraSelect);
+        await updateProductoras(productoraSelect, valuesForm);
         setProductoraSelect(null);
       } else {
         await createProductoras(valuesForm);
       }
-      setValuesForm({ name: '', state: '' });
+      setValuesForm({ name: '', state: '', slogan: '', description: '' });
       listProductoras();
       Swal.close();
     } catch (error) {
@@ -60,22 +60,36 @@ export const ProductoraView = () => {
 
   const handleUpdateProductoras = async (e, productora) => {
     e.preventDefault();
-    setValuesForm({ name: productora.name, state: productora.state});
+    setValuesForm({ name: productora.name, state: productora.state, slogan: productora.slogan, description: productora.description});
     setProductoraSelect(productora._id);
   }
 
   return (
-    <div className='container-fluid mt-4'>
+    <div className='container-fluid mt-3'>
       <form onSubmit={(e) => handleCreateProductora(e)} >
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-3">
             <div className="mb-3">
               <label className="form-label">Nombre</label>
               <input required name='name' value={name} type="text" className="form-control"
                 onChange={(e) => handleOnChange(e)} />
             </div>
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-3">
+            <div className="mb-3">
+              <label className="form-label">Slogan</label>
+              <input required name='name' value={slogan} type="text" className="form-control"
+                onChange={(e) => handleOnChange(e)} />
+            </div>
+          </div>
+          <div className="col-lg-3">
+            <div className="mb-3">
+              <label className="form-label">Descripcion</label>
+              <input required name='name' value={description} type="text" className="form-control"
+                onChange={(e) => handleOnChange(e)} />
+            </div>
+          </div>
+          <div className="col-lg-3">
             <div className="mb-3">
               <label className="form-label">Estado</label>
               <select required name='state' value={state} className="form-select" onChange={(e) => handleOnChange(e)} >
@@ -97,22 +111,28 @@ export const ProductoraView = () => {
             <th scope="col">Estado</th>
             <th scope='col'>Fecha Creación</th>
             <th scope='col'>Fecha Actualización</th>
+            <th scope='col'>Slogan</th>
+            <th scope='col'>Descripcion</th>
             <th scope='col'>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {
             productoras.length > 0 && productoras.map((productora, index) => {
-              return <tr>
+              return (
+                <tr key={productora._id}>
                 <th scope='row'> {index + 1} </th>
-                <td> {productora.name} </td>
+                <td> {productora.name_Producer} </td>
                 <td> {productora.state} </td>
                 <td> {moment(productora.createdAt).format('DD-MM-YYYY HH:mm')} </td>
                 <td> {moment(productora.updatedAt).format('DD-MM-YYYY HH:mm')} </td>
-                <td><button className='btn btn-success btn-sm me-2' onClick={(e) => handleUpdateProductoras(e, productora )}>Actualizar</button>
+                <td className="text-break" style={{ maxWidth: '200px' }}> {productora.slogan} </td>
+                <td className="text-break" style={{ maxWidth: '300px' }}> {productora.description} </td>
+                <td><button className='btn btn-success btn-sm me-1' onClick={(e) => handleUpdateProductoras(e, productora )}>Actualizar</button>
                   <button className='btn btn-danger btn-sm'>Eliminar</button>
                 </td>
               </tr>
+              );
             })
           }
         </tbody>
