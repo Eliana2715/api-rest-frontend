@@ -2,7 +2,7 @@ import { axiosInstance } from "../helper/axios-config";
 
 const getTipos = () => {
     return axiosInstance.get('tipo', {
-        header: {
+        headers: {
             'Content-type': 'application/json'
         }
     });
@@ -10,7 +10,7 @@ const getTipos = () => {
 
 const createTipos = (data) => {
     return axiosInstance.post('tipo', data, {
-        header: {
+        headers: {
             'Content-type': 'application/json'
         }
     });
@@ -18,7 +18,7 @@ const createTipos = (data) => {
 
 const updateTipos = (tipoId, data) => {
     return axiosInstance.put(`tipo/${tipoId}`, data, {
-        header: {
+        headers: {
             'Content-type': 'application/json'
         }
     });

@@ -80,7 +80,7 @@ export const DirectorView = () => {
             <div className="mb-3">
               <label className="form-label">Estado</label>
               <select required name='state' value={state} className="form-select" onChange={(e) => handleOnChange(e)} >
-                <option selected>--SELECCIONE--</option>
+                <option value="">--SELECCIONE--</option>
                 <option value="Activo">Activo</option>
                 <option value="Inactivo">Inactivo</option>
               </select>
