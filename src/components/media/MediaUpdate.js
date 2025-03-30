@@ -150,6 +150,7 @@ export const MediaUpdate = () => {
 
     try {
 
+   
       Swal.fire({
         allowOutsideClick: false,
         text: 'Cargado...'
@@ -170,12 +171,12 @@ export const MediaUpdate = () => {
     <div className='container-fluid mt-3 mb-2'>
     <div className='card'>
       <div className='card-header'>
-        <h5 className='card-title'>Detalle Producto</h5>
+        <h5 className='card-title'>Detalle </h5>
       </div>
       <div className='card-body'>
         <div className='row'>
           <div className='col-md-4'>
-            <img src={media?.image} alt="Portada" className="img-fluid" />
+            <img src={media?.image} alt="Portada" className="img-fluid" style={{ maxWidth: '250px', height: 'auto' }} />
           </div>
           <div className='col-md-8'>
             <form onSubmit={(e) => handleOnSubmit(e)}>
@@ -357,5 +358,5 @@ export const MediaUpdate = () => {
     </div>
   </div>
 
-        )
-    }
+  )
+}
