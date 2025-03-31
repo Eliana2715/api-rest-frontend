@@ -78,14 +78,14 @@ export const ProductoraView = () => {
           <div className="col-lg-3">
             <div className="mb-3">
               <label className="form-label">Slogan</label>
-              <input required name='name' value={slogan} type="text" className="form-control"
+              <input required name='slogan' value={slogan} type="text" className="form-control"
                 onChange={(e) => handleOnChange(e)} />
             </div>
           </div>
           <div className="col-lg-3">
             <div className="mb-3">
               <label className="form-label">Descripcion</label>
-              <input required name='name' value={description} type="text" className="form-control"
+              <input required name='description' value={description} type="text" className="form-control"
                 onChange={(e) => handleOnChange(e)} />
             </div>
           </div>
