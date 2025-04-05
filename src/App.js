@@ -15,9 +15,9 @@
     return  <Router>
       <Header/>
       <Switch>
+        <Route exact path='/' component={MediaView} />
         <Route exact path='/director' component={DirectorView} />
-        <Route exact path='/genero' component={GeneroView} />
-        <Route exact path='/media' component={MediaView} />
+        <Route exact path='/genero' component={GeneroView} />   
         <Route exact path='/productora' component={ProductoraView} />
         <Route exact path='/tipo' component={TipoView} />
         <Route exact path='/medias/edit/:mediaId' component={ MediaUpdate } />
